@@ -1,0 +1,48 @@
+# Prometheus — scrape config for all AntiGravity services
+# Each Go service exposes /metrics on its port
+
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+
+  - job_name: 'auth-service'
+    static_configs:
+      - targets: ['auth-service:8001']
+    metrics_path: /metrics
+
+  - job_name: 'user-service'
+    static_configs:
+      - targets: ['user-service:8002']
+    metrics_path: /metrics
+
+  - job_name: 'chat-service'
+    static_configs:
+      - targets: ['chat-service:8003']
+    metrics_path: /metrics
+
+  - job_name: 'notification-service'
+    static_configs:
+      - targets: ['notification-service:8004']
+    metrics_path: /metrics
+
+  - job_name: 'search-service'
+    static_configs:
+      - targets: ['search-service:8005']
+    metrics_path: /metrics
+
+  - job_name: 'ai-service'
+    static_configs:
+      - targets: ['ai-service:8006']
+    metrics_path: /metrics
+
+  - job_name: 'media-service'
+    static_configs:
+      - targets: ['media-service:8007']
+    metrics_path: /metrics
+
+  - job_name: 'krakend'
+    static_configs:
+      - targets: ['krakend:8090']
+    metrics_path: /metrics

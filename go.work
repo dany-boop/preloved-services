@@ -1,0 +1,23 @@
+// go.work — Go Workspace
+// This links all services so they can share the /shared module
+// without publishing it to a registry.
+//
+// HOW IT WORKS:
+// Each service has its own go.mod (independent deployment)
+// The shared/ module is referenced locally via this workspace
+// Run: go work sync  (after adding new services)
+
+go 1.23
+
+toolchain go1.24.4
+
+use (
+	./services/ai-service
+	./services/auth-service
+	./services/chat-service
+	./services/media-service
+	./services/notification-service
+	./services/search-service
+	./services/user-service
+	./shared
+)

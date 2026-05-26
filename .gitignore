@@ -1,0 +1,33 @@
+# Environment
+# .env
+# *.env.local
+
+# Go
+*.exe
+*.test
+*.out
+coverage.out
+coverage.html
+vendor/
+
+# Go workspace sum
+go.work.sum
+
+# Binaries
+bin/
+dist/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker volumes (local)
+postgres_data/
+mongo_data/
+redis_data/

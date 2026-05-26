@@ -1,0 +1,1 @@
+DROP FUNCTION IF EXISTS auth.update_updated_at;
