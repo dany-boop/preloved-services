@@ -18,7 +18,7 @@ func NewPasswordResetRepository(db *pgxpool.Pool) *PasswordResetRepository {
 
 func (r *PasswordResetRepository) Create(ctx context.Context, reset *model.PasswordReset) error {
 
-	query := `INSERT INTO auth.password_resets (id,user_id,token,expires_at)VALUES ($1,$2,$3)`
+	query := `INSERT INTO auth.password_resets (id,user_id,token,expires_at)VALUES ($1,$2,$3,$4)`
 
 	_, err := r.db.Exec(ctx, query, reset.Token, reset.UserID, reset.ExpiresAt)
 	if err != nil {
@@ -28,7 +28,7 @@ func (r *PasswordResetRepository) Create(ctx context.Context, reset *model.Passw
 }
 
 func (r *PasswordResetRepository) FindByToken(ctx context.Context, token string) (*model.PasswordReset, error) {
-	query := `SELECT id,user_id,token,expires_at ,used_at,created_at FROM auth.password_resets WHERE token=$1 AND LIMIT 1`
+	query := `SELECT id,user_id,token,expires_at ,used_at,created_at FROM auth.password_resets WHERE token=$1 LIMIT 1`
 
 	var reset model.PasswordReset
 	err := r.db.QueryRow(ctx, query, token).Scan(&reset.Token, &reset.UserID, &reset.ExpiresAt, &reset.UsedAt, &reset.CreatedAt)
